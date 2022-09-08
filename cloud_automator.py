@@ -74,6 +74,6 @@ while loop:
     elif x == 9:
         print("Hello")
     elif x == 10:
-        print("Cleaning this bad mother up")     
+        print("Cleaning this up")     
     elif x == 99:
         quit()
