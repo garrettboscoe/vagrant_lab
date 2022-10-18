@@ -9,7 +9,9 @@ import subprocess
 import time
 import keyboard
 
-
+os.system("curl 'https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip' -o 'awscliv2.zip')
+os.system("unzip awscliv2.zip")
+os.system("sudo ./aws/install")
 
 #Create a banner
 banner = """
@@ -30,12 +32,12 @@ banner = """
 [2] Delete AWS Bucket
 [3] List AWS Buckets
 [4] Scan all reserved TCP ports on a website
-[5] 
-[6] 
-[7] 
+[5] Determine operating system using an IP Address
+[6] Determine the top ports on an IP address
+[7] Scan ports on an IP address (TCP SYN scan)
 [8] 
-[9] 
-[10] 
+[9] Run Vagrant
+[10] Destroy Vagrant
 [99] End Program
 ======================================================================================
 """
@@ -70,28 +72,37 @@ while loop:
     elif x == '4':
         print ("[4] Scan all reserved ports on a website")
         websiteName = input("What website would you like to scan? (Recommended - scanme.nmap.org\n)")
-        os.system("nmap -v scanme.nmap.org")
+        os.system("nmap -v " + websiteName + "")
 
  
     elif x == '5':
-        print ("Executing T1040 - Network Sniffing")
+        print("[5] Operating system scan")
+        osipAddress = input("What IP address would you like to scan?")
+        os.system("nmap -O " + osipAddress + "")
  
 
     elif x == '6':
-        print ("Executing T1087 - Account Discovery")
+        print ("[6] Determine the top ports on an IP address")
+        topipAddress = input("What IP address would you like to scan?")
+        scanNum = input("How many of the top ports would you like to scan?")
+        os.system("nmap --top-ports " + scanNum + " " + topipAddress + "")
 
     elif x == '7':
-        print ("Executing T1002 - Data Compressed")
+        print ("[7] Scan ports on an IP address (TCP SYN scan)")
+        scanipAddress = input("What IP address would you like to scan?")
+        os.system("nmap -sS " + scanipAddress + "")
 
     elif x == '8':
-        print ("Executing T1132 - Data Encoding")
-        time.sleep(1)
+        print("[8] Initialize Vagrant")
+        os.system("sudo vagrant init")
 
     elif x == '9':
-        print("Hello")
+        print("[9] Run vagrant")
+        os.system("vagrant up")
 
     elif x == '10':
-        print("Cleaning this up")  
+        print("[10] Vagrant destroy")
+        os.system("vagrant destroy")
 
     elif x == '99':
         quit()
