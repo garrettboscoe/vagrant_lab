@@ -8,8 +8,8 @@ import os
 import subprocess
 import time
 
-os.system("pip3 install awscli")
-os.system("pip install python-nmap")
+os.system("sudo apt install awscli")
+os.system("sudo apt install python-nmap")
 
 #Create a banner
 banner = """
